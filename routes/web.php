@@ -23,6 +23,11 @@ Route::get('kategori/{id}', function($id) {
     return "hello kategori ".$id;
 });
 
-//Route::resource('kategori', 'KategoriController');
+Route::resource('layouts', 'TemplateController');
+
+Route::get('dashboard', function () {
+    return view('dashboard/index');
+});
+
 //Route::resource('kategori', 'KategoriController')->only(['index','show']);
 Route::resource('kategori', 'KategoriController')->except(['delete','destroy']);
