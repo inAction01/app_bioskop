@@ -7,13 +7,13 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="">
-          <a href="#">
+          <a href="dashboard">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
 		<li class="">
-          <a href="#">
-            <i class="fa fa-cogs"></i> <span>Manage Data</span>
+          <a href="kategori">
+            <i class="fa fa-cogs"></i> <span>Data Kategori</span>
           </a>
         </li>      		
       </ul>

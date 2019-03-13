@@ -15,13 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('kategori', function () {
-    return "hello kategori";
-});
-
-Route::get('kategori/{id}', function($id) {
-    return "hello kategori ".$id;
-});
 
 Route::resource('layouts', 'TemplateController');
 
@@ -29,5 +22,16 @@ Route::get('dashboard', function () {
     return view('dashboard/index');
 });
 
-//Route::resource('kategori', 'KategoriController')->only(['index','show']);
-Route::resource('kategori', 'KategoriController')->except(['delete','destroy']);
+Route::get('kategori', function () {
+    return view('dashboard/kategori');
+});
+
+Route::resource('kategori', 'KategoriController')->except(['destroy']);
+
+Route::get('cari', 'KategoriController@search');
+
+Route::get('kategori{id}', function () {
+    return view('dashboard/kategori');
+});
+
+//Route::resource('kategori', 'KategoriController')->except(['delete','destroy']);

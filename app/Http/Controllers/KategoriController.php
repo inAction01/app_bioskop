@@ -15,7 +15,14 @@ class KategoriController extends Controller
     public function index()
     {
 	    $data = Kategori::all();
-        return view('kategori', compact('data'));
+        return view('dashboard.kategori', compact('data'));
+    }
+	
+	public function search(Request $request)
+    {
+        $query = $request->input('key');
+        $hasil = Kategori::where('kategori', 'LIKE', '%' . $query . '%')->paginate(10);
+        return view('dashboard.kategoriHasil', compact('hasil', 'query'));
     }
 
     /**
