@@ -23,13 +23,13 @@
               
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="assets/backend/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="assets/backend/dist/img/avatar6.png" class="user-image" alt="User Image">
               <span class="hidden-xs">Mochammad Fahmy Ruszally</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="assets/backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="assets/backend/dist/img/avatar6.png" class="img-circle" alt="User Image">
 
                 <p>
                   Mochammad Fahmy Ruszally - Web Developer

@@ -6,7 +6,7 @@
         <div class="col-xs-12">
           <div class="box table-responsive">
             <div class="box-header">
-              <h3 class="box-title" style="font-size:24px"><i class="fa fa-list-alt"></i> Data Kategori </h3>&nbsp &nbsp  <a href="kategori">
+              <h3 class="box-title" style="font-size:24px"><i class="fa fa-tags"></i> Data Kategori </h3>&nbsp &nbsp  <a href="kategori">
 				<i class="fa fa-arrow-right"></i> <span>List All Data</span>
 			  </a>
 			  

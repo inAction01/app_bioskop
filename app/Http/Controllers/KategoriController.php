@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Kategori;
+use DB;
 
 class KategoriController extends Controller
 {
@@ -15,16 +16,16 @@ class KategoriController extends Controller
     public function index()
     {
 	    $data = Kategori::all();
-        return view('dashboard.kategori', compact('data'));
+        return view('pageKategori.index', compact('data'));
     }
 	
 	public function search(Request $request)
     {
         $query = $request->input('key');
         $hasil = Kategori::where('kategori', 'LIKE', '%' . $query . '%')->paginate(10);
-        return view('dashboard.kategoriHasil', compact('hasil', 'query'));
+        return view('pageKategori.kategoriHasil', compact('hasil', 'query'));
     }
-
+	
     /**
      * Show the form for creating a new resource.
      *
@@ -43,7 +44,13 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       DB::table('kategori')->insert([
+		'id_kategori' => $request->id_kategori,
+		'kategori' => $request->kategori,
+		'slug' => $request->slug
+	  ]);
+	  
+		return redirect('kategori');
     }
 
     /**
@@ -64,8 +71,9 @@ class KategoriController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+		$data = DB::table('kategori')->where('id_kategori',$id)->get();
+		return view('pageKategori.editkategori', compact('data'));
     }
 
     /**
@@ -77,9 +85,12 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       DB::table('kategori')->where('id_kategori',$id)->update([
+		'kategori' => $request->kategori,
+		'slug' => $request->slug
+		]);		
+		return redirect('kategori');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -88,6 +99,7 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('kategori')->where('id_kategori',$id)->delete();
+		return redirect('kategori');
     }
 }

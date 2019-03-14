@@ -14,24 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-Route::resource('layouts', 'TemplateController');
-
 Route::get('dashboard', function () {
     return view('dashboard/index');
 });
 
-Route::get('kategori', function () {
-    return view('dashboard/kategori');
-});
 
-Route::resource('kategori', 'KategoriController')->except(['destroy']);
+Route::resource('kategori', 'KategoriController');
+Route::get('cariKategori', 'KategoriController@search');
+Route::post('tambahKategori', 'KategoriController@store');
+Route::get('editKategori/{id}', 'KategoriController@edit');
+Route::post('updateKategori/{id}', 'KategoriController@update');
+Route::get('hapusKategori/{id}', 'KategoriController@destroy');
 
-Route::get('cari', 'KategoriController@search');
 
-Route::get('kategori{id}', function () {
-    return view('dashboard/kategori');
-});
 
 //Route::resource('kategori', 'KategoriController')->except(['delete','destroy']);

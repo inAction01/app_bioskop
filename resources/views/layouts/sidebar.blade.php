@@ -7,12 +7,12 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="">
-          <a href="dashboard">
+          <a href="{{ url('dashboard') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
 		<li class="">
-          <a href="kategori">
+          <a href="{{url ('kategori') }}">
             <i class="fa fa-cogs"></i> <span>Data Kategori</span>
           </a>
         </li>      		
