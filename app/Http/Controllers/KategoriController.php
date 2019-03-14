@@ -15,14 +15,14 @@ class KategoriController extends Controller
      */
     public function index()
     {
-	    $data = Kategori::all();
+		$data = DB::select('select * from kategori order by kategori asc');
         return view('pageKategori.index', compact('data'));
     }
 	
 	public function search(Request $request)
     {
         $query = $request->input('key');
-        $hasil = Kategori::where('kategori', 'LIKE', '%' . $query . '%')->paginate(10);
+        $hasil = Kategori::where('kategori', 'LIKE', '%' . $query . '%')->paginate();
         return view('pageKategori.kategoriHasil', compact('hasil', 'query'));
     }
 	
@@ -44,8 +44,9 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
+	   $id = 'ID-'.substr(strtoupper($request->kategori),0,3);
        DB::table('kategori')->insert([
-		'id_kategori' => $request->id_kategori,
+		'id_kategori' => $id,
 		'kategori' => $request->kategori,
 		'slug' => $request->slug
 	  ]);
@@ -72,7 +73,7 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {   
-		$data = DB::table('kategori')->where('id_kategori',$id)->get();
+		$data = DB::select('select * from kategori where id_kategori =?', [$id]);
 		return view('pageKategori.editkategori', compact('data'));
     }
 

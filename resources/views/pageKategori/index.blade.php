@@ -28,10 +28,6 @@
 			  <form action="{{ url('tambahKategori') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
 			  {{ csrf_field() }}
 			  <div class="box-body">
-			  <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user-md"></i></span>
-                <input type="text" class="form-control" name="id_kategori" placeholder="ID kategori" required autocomplete="off">
-              </div><br>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-tags"></i></span>
                 <input type="text" class="form-control" name="kategori" placeholder="Kategori" required autocomplete="off">
