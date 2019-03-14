@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Kategori;
+use App\Film;
 use DB;
 
-class KategoriController extends Controller
+class FilmController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,15 +15,16 @@ class KategoriController extends Controller
      */
     public function index()
     {
-		$data = DB::select('select * from kategori order by kategori asc');
-        return view('pageKategori.index', compact('data'));
+		$kategori = DB::select('select * from kategori order by id_kategori asc');
+        $data = DB::select('select a.*,b.kategori from film a join kategori b on a.id_kategori = b.id_kategori order by a.id_kategori asc');
+        return view('pageFilm.index', compact('data','kategori'));
     }
 	
 	public function search(Request $request)
     {
         $query = $request->input('key');
-        $hasil = Kategori::where('kategori', 'LIKE', '%' . $query . '%')->paginate();
-        return view('pageKategori.kategoriHasil', compact('hasil', 'query'));
+        $hasil = Film::where('judul', 'LIKE', '%' . $query . '%')->paginate();
+        return view('pageFilm.FilmHasil', compact('hasil', 'query'));
     }
 	
     /**
@@ -44,14 +45,17 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-	   $id = 'ID-'.substr(strtoupper($request->kategori),0,3);
-       DB::table('kategori')->insert([
-		'id_kategori' => $id,
-		'kategori' => $request->kategori,
-		'slug' => $request->slug
+       $id = 'ID-'.substr(strtoupper($request->id_kategori),3,3).'-'.date('his');
+       DB::table('film')->insert([
+		'id_film' => $id,
+		'id_kategori' => $request->id_kategori,
+		'judul' => $request->judul,
+		'sutradara' => $request->sutradara,
+		'thn_rilis' => $request->thn_rilis,
+		'sinopsis' => $request->sinopsis
 	  ]);
 	  
-		return redirect('kategori');
+		return redirect('film');
     }
 
     /**
@@ -72,11 +76,12 @@ class KategoriController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
-		$data = DB::select('select * from kategori where id_kategori =?', [$id]);
-		return view('pageKategori.editKategori', compact('data'));
+    {
+		$kategori = DB::select('select * from kategori order by id_kategori asc');
+        $data = DB::select('select * from film where id_film =?', [$id]);
+		return view('pageFilm.editFilm', compact('data','kategori'));
     }
-
+	
     /**
      * Update the specified resource in storage.
      *
@@ -86,12 +91,16 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
-       DB::table('kategori')->where('id_kategori',$id)->update([
-		'kategori' => $request->kategori,
-		'slug' => $request->slug
+        DB::table('film')->where('id_film',$id)->update([
+		'id_kategori' => $request->id_kategori,
+		'judul' => $request->judul,
+		'sutradara' => $request->sutradara,
+		'thn_rilis' => $request->thn_rilis,
+		'sinopsis' => $request->sinopsis
 		]);		
-		return redirect('kategori');
+		return redirect('film');
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -100,7 +109,7 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('kategori')->where('id_kategori',$id)->delete();
-		return redirect('kategori');
+        DB::table('film')->where('id_film',$id)->delete();
+		return redirect('film');
     }
 }

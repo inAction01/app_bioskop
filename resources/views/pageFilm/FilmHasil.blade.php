@@ -6,7 +6,7 @@
         <div class="col-xs-12">
           <div class="box table-responsive">
             <div class="box-header">
-              <h3 class="box-title" style="font-size:24px"><i class="fa fa-tags"></i> Data Kategori </h3>&nbsp &nbsp  <a href="{{ url('kategori') }}">
+              <h3 class="box-title" style="font-size:24px"><i class="fa fa-video-camera"></i> Data Film </h3>&nbsp &nbsp  <a href="{{url('film')}}">
 				<i class="fa fa-arrow-right"></i> <span>List All Data</span>
 			  </a>
 			  
@@ -17,10 +17,13 @@
               <table id="" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>#</th>
-                  <th>ID Kategori</th>
-                  <th>Kategori</th>
-                  <th>Slug</th>
+                   <th>#</th>
+                  <th>ID Film</th>
+                  <th>Category</th>
+                  <th>Title</th>
+                  <th>Director</th>
+                  <th>Released</th>
+                  <th>Sinopsis</th>
                   <th>Created</th>
                 </tr>
                 </thead>
@@ -29,9 +32,12 @@
 				@foreach($hasil as $p)
                 <tr>
 					<td>{{ $no++ }}</td>
+					<td>{{ $p->id_film }}</td>
 					<td>{{ $p->id_kategori }}</td>
-					<td>{{ $p->kategori }}</td>
-					<td>{{ $p->slug }}</td>
+					<td>{{ $p->judul }}</td>
+					<td>{{ $p->sutradara }}</td>
+					<td>{{ $p->thn_rilis }}</td>
+					<td>{{ $p->sinopsis }}</td>
 					<td>{{ $p->created_at }}</td>
                 </tr>
                 @endforeach

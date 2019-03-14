@@ -6,7 +6,7 @@
         <div class="col-xs-12">
           <div class="box table-responsive">
             <div class="box-header">
-              <h3 class="box-title" style="font-size:24px"><i class="fa fa-tags"></i> Data Kategori</h3> <br>
+              <h3 class="box-title" style="font-size:24px"><i class="fa fa-video-camera"></i> Data Film</h3> <br>
 			   <div class="box-body">
 			   <div class="row">
 			   <div class="col-md-9">
@@ -15,11 +15,11 @@
                 <i class="fa fa-plus"></i> Add Data
 				</button>
 			   </div>
-			
+
 			   
 			   </div>
 			   <div class="col-md-3">
-			    <form action="{{ url('cariKategori') }}" method="get"> 
+			    <form action="{{ url('cariFilm') }}" method="get"> 
 				<div class="input-group">
 				  <input type="text" name="key" class="form-control" required autocomplete="off" placeholder="Search...">
 					  <span class="input-group-btn">
@@ -32,15 +32,22 @@
 				</form>
 			  </div>
             </div>
+			
+			
+			
+			
             <!-- /.box-header -->
             <div class="box-body" style="margin-top:-20px">
               <table id="" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>ID Kategori</th>
-                  <th>Kategori</th>
-                  <th>Slug</th>
+                  <th>ID Film</th>
+                  <th>Category</th>
+                  <th>Title</th>
+                  <th>Director</th>
+                  <th>Released</th>
+                  <th>Sinopsis</th>
                   <th>Created</th>
                   <th>Action</th>
                 </tr>
@@ -50,12 +57,16 @@
 				@foreach($data as $p)
                 <tr>
 					<td>{{ $no++ }}</td>
-					<td>{{ $p->id_kategori }}</td>
+					<td>{{ $p->id_film }}</td>
 					<td>{{ $p->kategori }}</td>
-					<td>{{ $p->slug }}</td>
+					<td>{{ $p->judul }}</td>
+					<td>{{ $p->sutradara }}</td>
+					<td>{{ $p->thn_rilis }}</td>
+					<td>{{ $p->sinopsis }}</td>
 					<td>{{ $p->created_at }}</td>
-					<td><a href="editKategori/{{ $p->id_kategori }}"class="btn default"><i class="fa fa-edit"></i> Edit</a> <br>
-									<a href="hapusKategori/{{ $p->id_kategori }}"
+
+					<td><a href="editFilm/{{ $p->id_film }}"class="btn default"><i class="fa fa-edit"></i> Edit</a> <br>
+									<a href="hapusFilm/{{ $p->id_film }}"
 									onClick="return confirm('Are you sure you want to delete?')
 									" class="btn default"><i class="fa fa-trash-o"></i> Hapus</a></td>
                 </tr>
@@ -69,27 +80,43 @@
         </div>
         <!-- /.col -->
       </div>
-	  
-	     <!-- Modal  Body -->
+	  			   <!-- Modal  Body -->
 		<div class="modal fade" id="modal-default">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><i class="fa fa-pencil"></i> Form Add Data Kategori</h4>
+                <h4 class="modal-title"><i class="fa fa-pencil"></i> Form Add Data Film</h4>
               </div>
 			  <div class="modal-body">
-			  <form action="{{ url('tambahKategori') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+			  <form action="{{ url('tambahFilm') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
 			  {{ csrf_field() }}
 			  <div class="box-body">
               <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-video-camera"></i></span>
+                <input type="text" class="form-control" name="judul" placeholder="Judul Film" required autocomplete="off">
+              </div><br>
+			   <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-tags"></i></span>
-                <input type="text" class="form-control" name="kategori" placeholder="Kategori" required autocomplete="off">
+                 <select class="form-control" required name="id_kategori">
+                    <option value="">- Select Jenis Kategori- </option>
+					@foreach($kategori as $row)
+						<option value="{{ $row->id_kategori }}">{{ $row->kategori }}</option>
+					@endforeach
+                  </select>
               </div><br>
 			  <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-list-alt"></i></span>
-                <input type="text" class="form-control" name="slug" placeholder="Slug" required autocomplete="off">
+                <span class="input-group-addon"><i class="fa fa-male"></i></span>
+                <input type="text" class="form-control" name="sutradara" placeholder="Sutradara" required autocomplete="off">
+              </div><br>
+			  <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+                <input type="number" class="form-control" name="thn_rilis" placeholder="Tahun Rilis" required autocomplete="off">
+              </div><br>
+			  <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                <input type="text" class="form-control" name="sinopsis" placeholder="Sinopsis" required autocomplete="off">
               </div><br>
 			  
 			  </div>
@@ -108,8 +135,10 @@
         </div>
 			   
 			  <!-- End Modal --> 
-	  
       <!-- /.row -->
     </section>
+	
+	
+			  
 @endsection
     <!-- /.content -->

@@ -26,6 +26,10 @@ Route::get('editKategori/{id}', 'KategoriController@edit');
 Route::post('updateKategori/{id}', 'KategoriController@update');
 Route::get('hapusKategori/{id}', 'KategoriController@destroy');
 
-
-
+Route::resource('film', 'FilmController');
+Route::get('cariFilm', 'FilmController@search');
+Route::post('tambahFilm', 'FilmController@store');
+Route::get('editFilm/{id}', 'FilmController@edit');
+Route::post('updateFilm/{id}', 'FilmController@update');
+Route::get('hapusFilm/{id}', 'FilmController@destroy');
 //Route::resource('kategori', 'KategoriController')->except(['delete','destroy']);

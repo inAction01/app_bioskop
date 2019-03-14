@@ -13,9 +13,14 @@
         </li>
 		<li class="">
           <a href="{{url ('kategori') }}">
-            <i class="fa fa-cogs"></i> <span>Data Kategori</span>
+            <i class="fa fa-tags"></i> <span>Data Kategori</span>
           </a>
-        </li>      		
+        </li> 
+		<li class="">
+          <a href="{{url ('film') }}">
+            <i class="fa fa-video-camera"></i> <span>Data Film</span>
+          </a>
+        </li> 		
       </ul>
     </section>
     
