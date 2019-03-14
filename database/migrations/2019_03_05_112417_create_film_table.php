@@ -14,8 +14,8 @@ class CreateFilmTable extends Migration
     public function up()
     {
         Schema::create('film', function (Blueprint $table) {
-            $table->bigIncrements('id_film');
-			$table->integer('id_kategori');
+			$table->string('id_film')->unique();
+			$table->string('id_kategori', 100);
             $table->string('judul', 100);
             $table->string('sutradara', 100);
             $table->string('thn_rilis', 100);
