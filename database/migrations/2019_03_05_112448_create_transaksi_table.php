@@ -14,15 +14,16 @@ class CreateTransaksiTable extends Migration
     public function up()
     {
         Schema::create('transaksi', function (Blueprint $table) {
-			$table->string('id_transaksi')->unique();
-			$table->string('id_film',100);
-			$table->string('nama', 100);
-			$table->string('no_ktp', 100);
-			$table->string('tgl_pinjam', 100);
-			$table->string('tgl_kembali', 100);
+			$table->primary('id_transaksi');
+			$table->string('id_transaksi',10);
+			$table->string('id_film',10);	
+			$table->string('nama');
+			$table->string('no_ktp');
+			$table->string('tgl_pinjam');
+			$table->string('tgl_kembali');
 			$table->double('hrg_sewa');
-			$table->string('status', 100);
-            $table->timestamps();
+			$table->string('status');
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

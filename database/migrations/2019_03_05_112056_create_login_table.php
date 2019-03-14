@@ -15,10 +15,10 @@ class CreateLoginTable extends Migration
     {
         Schema::create('login', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('username', 100);
-            $table->string('password', 100);
-            $table->string('status', 50);
-            $table->timestamps();
+            $table->string('email');
+            $table->string('password');
+            $table->string('status');
+			$table->timestamp('created_at')->useCurrent();
         });
     }
 

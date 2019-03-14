@@ -32,7 +32,7 @@
 					<td>{{ $p->id_kategori }}</td>
 					<td>{{ $p->kategori }}</td>
 					<td>{{ $p->slug }}</td>
-					<td>{{ $p->tgl_input }}</td>
+					<td>{{ $p->created_at }}</td>
                 </tr>
                 @endforeach
 				</tbody>

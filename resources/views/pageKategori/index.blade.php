@@ -90,7 +90,7 @@
 					<td>{{ $p->id_kategori }}</td>
 					<td>{{ $p->kategori }}</td>
 					<td>{{ $p->slug }}</td>
-					<td>{{ $p->tgl_input }}</td>
+					<td>{{ $p->created_at }}</td>
 					<td><a href="editKategori/{{ $p->id_kategori }}"class="btn default"><i class="fa fa-edit"></i> Edit</a> <br>
 									<a href="hapusKategori/{{ $p->id_kategori }}"
 									onClick="return confirm('Are you sure you want to delete?')
