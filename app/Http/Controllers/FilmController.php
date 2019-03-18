@@ -45,10 +45,15 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-       $id = 'ID-'.substr(strtoupper($request->id_kategori),3,3).'-'.date('his');
+		$file       = $request->file('foto');
+        $fileName   = $file->getClientOriginalName();
+        $request->file('foto')->move("image/", $fileName);
+		
+       $id = 'ID-'.date('his');
        DB::table('film')->insert([
 		'id_film' => $id,
 		'id_kategori' => $request->id_kategori,
+		'img' => $fileName,
 		'judul' => $request->judul,
 		'sutradara' => $request->sutradara,
 		'thn_rilis' => $request->thn_rilis,
@@ -91,14 +96,20 @@ class FilmController extends Controller
      */
     public function update(Request $request, $id)
     {
+		$file       = $request->file('foto');
+		$fileName   = $file->getClientOriginalName();
+		$request->file('foto')->move("image/", $fileName);
+			
         DB::table('film')->where('id_film',$id)->update([
 		'id_kategori' => $request->id_kategori,
 		'judul' => $request->judul,
+		'img' => $fileName,
 		'sutradara' => $request->sutradara,
 		'thn_rilis' => $request->thn_rilis,
 		'sinopsis' => $request->sinopsis
 		]);		
 		return redirect('film');
+		
     }
 
     /**

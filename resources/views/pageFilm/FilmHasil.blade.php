@@ -19,7 +19,8 @@
                 <tr>
                    <th>#</th>
                   <th>ID Film</th>
-                  <th>Category</th>
+                  <th>Cover Img</th>
+				  <th>Category</th>
                   <th>Title</th>
                   <th>Director</th>
                   <th>Released</th>
@@ -32,7 +33,8 @@
 				@foreach($hasil as $p)
                 <tr>
 					<td>{{ $no++ }}</td>
-					<td>{{ $p->id_film }}</td>
+					<td>{{ $p->id_film }} - {{ substr($p->id_kategori,3,3) }}</td>
+					<td><img width="80px" height="100px" src="image/{{ $p->img }}"></td>
 					<td>{{ $p->id_kategori }}</td>
 					<td>{{ $p->judul }}</td>
 					<td>{{ $p->sutradara }}</td>

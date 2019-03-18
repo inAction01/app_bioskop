@@ -17,6 +17,7 @@ class CreateFilmTable extends Migration
 			$table->primary('id_film');
 			$table->string('id_film',20);
 			$table->string('id_kategori',10);
+            $table->string('img');
             $table->string('judul');
             $table->string('sutradara');
             $table->string('thn_rilis');

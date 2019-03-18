@@ -43,6 +43,7 @@
                 <tr>
                   <th>#</th>
                   <th>ID Film</th>
+                  <th>Cover Img</th>
                   <th>Category</th>
                   <th>Title</th>
                   <th>Director</th>
@@ -57,9 +58,10 @@
 				@foreach($data as $p)
                 <tr>
 					<td>{{ $no++ }}</td>
-					<td>{{ $p->id_film }}</td>
+					<td>{{ $p->id_film }} - {{ substr($p->id_kategori,3,3) }}</td>
+					<td><img width="80px" height="100px" src="image/{{ $p->img }}"></td>
 					<td>{{ $p->kategori }}</td>
-					<td>{{ $p->judul }}</td>
+					<td>{{ $p->judul }} </td>
 					<td>{{ $p->sutradara }}</td>
 					<td>{{ $p->thn_rilis }}</td>
 					<td>{{ $p->sinopsis }}</td>
@@ -117,6 +119,10 @@
 			  <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
                 <input type="text" class="form-control" name="sinopsis" placeholder="Sinopsis" required autocomplete="off">
+              </div><br>
+			    <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-image"></i> Image</span>
+                <input type="file" class="form-control" name="foto" required autocomplete="off"> <small>&nbsp *max file size 2MB</small>
               </div><br>
 			  
 			  </div>

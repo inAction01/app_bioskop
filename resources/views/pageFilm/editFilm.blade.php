@@ -15,7 +15,19 @@
               <i class="fa fa-minus"></i></button>
           </div>
         </div>
-		  {{ csrf_field() }}
+		 <div class="row">
+		   <div class="col-md-2">
+				<div class="box-body">
+					<img width="180px" height="200px" src="../image/{{ $p->img }}">
+					<br><br>
+				<div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-image"></i></span>
+                <input type="file" required class="form-control" name="foto">
+				 <small>&nbsp *max file size 2MB</small>
+				</div>
+				</div>
+		   </div>
+		   <div class="col-md-8">
 			  <div class="box-body">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-video-camera"></i></span>
@@ -44,6 +56,8 @@
               </div><br>
 			  
 			  </div>
+			 </div>
+		</div>
         <div class="box-footer">
 							<div class="col-md-offset-11 col-md-9">
 								
